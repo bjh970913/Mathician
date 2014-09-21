@@ -11,7 +11,7 @@ SECRET_KEY = 'development key'
 DEBUG = True
 FACEBOOK_APP_ID = '1666886116870681'
 FACEBOOK_APP_SECRET = '2750cfbf8755054c516fc327aaa00044'
-UPLOAD_FOLDER = '/home/bjh970913/math/uploads/'
+UPLOAD_FOLDER = '/home/bjh970913/mathician/uploads/'
 
 app = Flask(__name__, static_folder="", static_url_path="")
 app.debug = DEBUG
@@ -93,10 +93,10 @@ def qsave():
             f = open(UPLOAD_FOLDER+filename+'.png','a')
             f.write(image)
             f.close()
-            qqqq = Ques(fid=session['fid'], inum=num, title=title)
+            qqq = Ques(fid=session['fid'], inum=num, title=title)
             db_session.add(qqq)
             db_session.commit()
-            return redirect('/upload/'+filename+'.png')
+            return redirect('/uploads/'+filename+'.png')
     else:
         return redirect('/')
 

@@ -22,9 +22,10 @@ class Ques(Base):
         inum = Column(String(15))
 	title = Column(String(20))
 
-        def __init__(self, fid=None, name=None):
+        def __init__(self, fid=None, inum=None, title=None):
                 self.fid  = fid
-                self.name =name
+                self.inum = inum
+		self.title = title
 
         def __repr__(self):
                 return str(self.fid)
@@ -37,9 +38,10 @@ class Ans(Base):
 	qno = Column(Integer)
         inum = Column(Integer)
 
-        def __init__(self, fid=None, name=None):
+        def __init__(self, fid=None, qno=None, inum=None):
                 self.fid  = fid
-                self.name =name
+                self.qno = qno
+		self.inum = inum
 
         def __repr__(self):
                 return str(self.fid)
