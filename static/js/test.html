@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>test</title>
+</head>
+<body>
+    <script src="jquery.js"></script>
+<script type="text/javascript">
+            $(function () {
+                $(".draggable").draggable({
+                    revert: true,
+                    helper: 'clone',
+                    start: function (event, ui) {
+                        $(this).fadeTo('fast', 0.5);
+                    },
+                    stop: function (event, ui) {
+                        $(this).fadeTo(0, 1);
+                    }
+                });
+
+                $("#droppable").droppable({
+                    hoverClass: 'active',
+                    drop: function (event, ui) {
+                        this.value = $(ui.draggable).text();
+                    }
+                });
+            });
+        </script>
+
+    <input id="btnShow" type="button" value="Show" />
+
+    <div id="dialog" title="Dialog Box" style="border: solid 1px black; margin: 0px 0px 0px 0px; padding: 5px 0px 0px 5x;">
+        <div id="divText1" style="width: 200px; height: 30px;">
+            <input type="text" style="width: 98%;" value="Hello world!" /><br /><br />
+        </div>
+    </div>
+</body>
+</html>

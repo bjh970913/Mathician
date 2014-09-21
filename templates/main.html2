@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <link href="/static/bootstrap-social-gh-pages/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap-social-gh-pages/assets/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/bootstrap-social-gh-pages/assets/css/docs.css" rel="stylesheet">
+    <link href="/static/bootstrap-social-gh-pages/bootstrap-social.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1666886116870681', // App ID
+          channelUrl : '//ivivivivi.com/main', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+      };
+      (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+
+      function postlink()
+      {
+        FB.api(
+          "/me/feed",
+          "POST",
+          {
+            "link": "ivivivivi.com"
+          },
+          function (response) {
+            if (response && !response.error) {
+              alert('sss');
+            }
+          }
+        );
+      }
+      
+      $(document).keypress(function(e) {
+	switch (e.keyCode) {
+	  case 8:
+	    window.history.go(-1)
+	    break
+	}
+      }
+    </script>       
+  </head>
+  <body>
+    {{name}}<br>
+    <a href="/logout">로그아웃</a><br>
+    <a class="btn btn-social-icon btn-facebook" onclick="postlink();return false;" title="페이스북에 링크 공유하기">
+        <i class="fa fa-facebook"></i>
+    </a>
+  </body>
+</html>
