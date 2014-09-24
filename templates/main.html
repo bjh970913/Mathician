@@ -2,6 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/fabric.js"></script>
 		<script type="text/javascript" src="cP_v0.91/colorPicker.js"></script>
 		<script type='text/javascript'>
 			org = { mathdox:{formulaeditor:{options:{dragPalette:true, paletteShow: "none", useBar:true}}}};
@@ -30,6 +31,7 @@
 				});
 			});
 			function close_m2(){
+				edit['isedit'] = false;
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
 					width: "245px"
@@ -86,27 +88,44 @@
 			function text(){
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
-					width: "245px"
-				}, 245 );
+					width: "500px"
+				}, 1500 );
+				$('#menu2').css('z-index',11);
 				$("#addtext").slideDown();
 				$("#close").show();
 			}
 			function add_text(){
 				size=$('#fontsize').val()
+				if($('#edittext').val().length==0)
+				{
+					alert("Plese enter text");
+					return false;	
+				}
 				if(isNaN(size))
 				{
 					alert("Plese enter numbers only");
-					close_m2();
 					return false;
 				}
-				var text = new fabric.IText('Click to modify', {
-				fontFamily: 'consolas',
-				left: 30,
-				top: 30 ,
-				fontSize: Number(size),
-				});
-
-				canvas.add(text);
+				if(edit['isedit'])
+				{
+					ob = edit['object'];
+					ob.text = $('#edittext').val();
+					ob.fontSize = size;
+					canvas.renderAll();
+					edit['isedit'] = false;
+					close_m2();
+				}
+				else
+				{
+					var text = new fabric.IText($('#edittext').val(), {
+					fontFamily: 'consolas',
+					left: 530,
+					top: 330 ,
+					fontSize: Number(size),
+					});
+					canvas.add(text);
+					close_m2();
+				}
 			}			
 			function save(){
 				if($('#title').val()=="")
@@ -120,8 +139,24 @@
 				$("#context").val(img)
 				$("#save_form")[0].submit()
 			}
+			function new_text()
+			{
+				$('#edittext').val('')
+				$('#edittext').val('')
+			}
+			
+			var edit = {isedit:false}
+
+			fabric.IText.prototype.enterEditing=function(){
+				this.canvas && this.canvas.renderAll();
+				$('#edittext').val(this.text)
+				edit['isedit'] = true;
+				edit['object'] = this;
+				text();
+				return this
+			}
+
 		</script>
-		<script src="/static/js/fabric.js"></script>
 		<style type="text/css">
 			body{
 				margin: 0;
@@ -267,8 +302,10 @@
 				<button onclick="insert_formula()">insert formula</button>
 			</div>
 			<div id='addtext'>
+				<textarea id="edittext" cols=50></textarea>
 				<input type="text" id="fontsize">
-				<button onclick="add_text()">Add textbox</button>
+				<button onclick="add_text()">+</button>
+				<button onclick="new_text()">N</button>
 			</div>
 		</div>
 		<div id="title-bar">
