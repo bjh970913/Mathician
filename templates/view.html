@@ -41,16 +41,16 @@
 		<div class="q">
 			<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
 			<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
-			<div class="qb" id="{{ques[0].fid}}-{{ques[0].inum}}">
+			<div class="qb" id="{{ques[0].no}}">
 				{{ques[0].title}}
 			</div>
 		</div>
-		{%if length(alist)>0%}
+		{%if alist|length > 0%}
 			{%for ans in alist%}
 				<div class="a">
 					<img class="uimg" src="https://graph.facebook.com/{{ans.fid}}/picture?type=small">
 					<img class="qimg" src="/uploads/{{ans.filename}}.png">
-					<div class="qb" id="{{ans.fid}}-{{ans.inum}}">
+					<div class="qb" id="{{ans.no}}">
 						{{ans.title}}
 					</div>
 				</div>

@@ -76,7 +76,7 @@ def logout():
 @app.route('/main')
 def main():
     if isloggedin():
-        list=db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.inum).all()
+        list=db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.no).all()
         return render_template('main.html', list = list);
     else:
         return redirect('/')
@@ -87,12 +87,10 @@ def view():
     if isloggedin():
         if request.method == 'GET':
             if 'id' in request.args:
-                qnum = request.args['id'].split('-')
-                fid = qnum[0]
-                inum = qnum[1]
+                qnum = request.args['id']
 
-                ques = db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.inum).filter_by(fid=fid, inum=inum).all()
-                alist = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.inum, Ans.qno).filter_by(qno=inum).all()
+                ques = db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.no).filter_by(no=qnum).all()
+                alist = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(qno=ques[0].no).all()
 		return render_template('view.html', ques = ques, alist = alist);
             else:
                 return 'invalid request'
