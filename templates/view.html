@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="/static/js/jquery.js"></script>
+		<style type="text/css">
+			.q{
+			width: 750px;
+			height: 450px;
+			border: 1px solid black;
+			}
+			.a{
+			width: 750px;
+			height: 450px;
+			border: 1px solid red;
+			}
+			.qb{
+			height: 50px;
+			font-size: 49px;
+			background-color: gray;
+			padding-left: 60px;
+			opacity: 0.4;
+			}
+			.uimg{
+			position: absolute;
+			}
+			.qimg{
+			position: absolute;
+			width: 750px;
+			height: 450px;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.qb').click(function(e){
+					document.location="view?id="+e.target.id
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="q">
+			<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
+			<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
+			<div class="qb" id="{{ques[0].fid}}-{{ques[0].inum}}">
+				{{ques[0].title}}
+			</div>
+		</div>
+		{%if length(alist)>0%}
+			{%for ans in alist%}
+				<div class="a">
+					<img class="uimg" src="https://graph.facebook.com/{{ans.fid}}/picture?type=small">
+					<img class="qimg" src="/uploads/{{ans.filename}}.png">
+					<div class="qb" id="{{ans.fid}}-{{ans.inum}}">
+						{{ans.title}}
+					</div>
+				</div>
+			{%endfor%}
+		{%else%}
+			<div>
+				No answer;;
+			</div>
+		{%endif%}
+	</body>
+</html>

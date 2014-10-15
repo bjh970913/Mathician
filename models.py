@@ -21,12 +21,13 @@ class Ques(Base):
         fid = Column(String(20))
         inum = Column(String(15))
 	title = Column(String(20))
+	filename = Column(String(200))
 
-        def __init__(self, fid=None, inum=None, title=None):
+        def __init__(self, fid=None, inum=None, title=None, filename=None):
                 self.fid  = fid
                 self.inum = inum
 		self.title = title
-
+		self.filename = filename
         def __repr__(self):
                 return str(self.fid)
 
@@ -37,11 +38,15 @@ class Ans(Base):
         fid = Column(String(20))
 	qno = Column(Integer)
         inum = Column(Integer)
+	title = Column(String(20))
+        filename = Column(String(200))
 
-        def __init__(self, fid=None, qno=None, inum=None):
+        def __init__(self, fid=None, qno=None, inum=None, title=None, filename=None):
                 self.fid  = fid
                 self.qno = qno
 		self.inum = inum
+		self.title = title
+                self.filename = filename
 
         def __repr__(self):
                 return str(self.fid)
