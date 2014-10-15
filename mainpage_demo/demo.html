@@ -8,7 +8,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script type="text/javascript" src="jquery.onepage-scroll.js"></script>
+  <script type="text/javascript" src="static/js/jquery.onepage-scroll.js"></script>
   <link href='onepage-scroll.css' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <style>
@@ -227,7 +227,7 @@
     }
 
     .main section.page1 {
-      background:url(bg.png);
+      background:url(static/img/bg.png);
     }
     .main section.page1 h1 {
       text-align: left;
@@ -252,7 +252,7 @@
       text-align: center;
     }
     .main section.page2 {
-      background:url(bg.png);
+      background:url(static/img/bg.png);
     }
     .main section.page2 > img {
       position: absolute;
@@ -279,7 +279,7 @@
       color: #FFF;
       }
     .main section.page3 {
-      background:url(bg.png);
+      background:url(static/img/bg.png);
     }
     .main section.page3 .page_container {
       overflow: hidden;
@@ -363,19 +363,21 @@
   <div class="wrapper">
 	  <div class="main">
       <section class="page1">
-  	    <img src="img_page1.png" alt="phones">
+  	    <img src="static/img/img_page1.png" alt="phones">
       </section>
 
 	    <section class="page2">
-	      <img src="img_page2.png" alt="phones">
+	      <img src="static/img/img_page2.png" alt="phones">
       </section>
 
 	    <section class="page3">
-	      <img src="img_page3.png" alt="phones">
+	      <img src="static/img/img_page3.png" alt="phones">
       </section>
     </div>
     <div class="back">
-      <a href="#">UPLOAD PROB</a><a href="#">Login</a><a href="#">Sign Up</a></div>
+      <a class="btn btn-block btn-social btn-facebook" href="/login" _target="blank">
+      Sign in with Facebook
+    </a>
   </div>
 </body>
 </html>
