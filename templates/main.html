@@ -23,6 +23,19 @@
 			width: 750px;
 			height: 450px;
 			}
+			#mq{
+				width: 750px;
+				height: 50px;
+				margin-bottom: 20px;
+				border-radius: 10px;
+				background-color: green;
+				text-align: center;
+				font-size: 45px;
+			}
+			a{
+				text-decoration: none;
+				color: black;
+			}
 		</style>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -33,7 +46,10 @@
 		</script>
 	</head>
 	<body>
-		{%for ques in  list%}
+		<div id="mq">
+			<a href="/edit?mode=q" onclick="window.open(this.href,'_blank','width=1000,height=700, scrollbars=yes');return false;">질문하기</a>
+		</div>
+		{%for ques in list%}
 			<div class="q">
 				<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
 				<img class="qimg" src="/uploads/{{ques.filename}}.png">

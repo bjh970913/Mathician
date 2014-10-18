@@ -38,6 +38,16 @@
 		</script>
 	</head>
 	<body>
+		<div id="buttons">
+			<div>
+				<a href="/edit?mode=a&amp;qnum={{ques[0].no}}" onclick="window.open(this.href,'_blank','width=1000,height=700, scrollbars=yes');return false;">답변하기</a>
+			</div>
+			{%if ismine%}
+			<div>
+				<a href="/delete?qnum={{ques[0].no}}">삭제하기</a>
+			</div>
+			{%endif%}
+		</div>
 		<div class="q">
 			<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
 			<img class="qimg" src="/uploads/{{ques[0].filename}}.png">

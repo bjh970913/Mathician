@@ -11,7 +11,7 @@ SECRET_KEY = 'development key'
 DEBUG = True
 FACEBOOK_APP_ID = '1666886116870681'
 FACEBOOK_APP_SECRET = '2750cfbf8755054c516fc327aaa00044'
-UPLOAD_FOLDER = '/home/bjh970913/mathician/uploads/'
+UPLOAD_FOLDER = '/home/bjh970913/dc/mathician/uploads/'
 
 app = Flask(__name__, static_folder="", static_url_path="")
 app.debug = DEBUG
@@ -91,7 +91,7 @@ def view():
 
                 ques = db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.no).filter_by(no=qnum).all()
                 alist = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(qno=ques[0].no).all()
-		return render_template('view.html', ques = ques, alist = alist);
+		return render_template('view.html', ques = ques, alist = alist, ismine=(session['fid']==ques[0].fid));
             else:
                 return 'invalid request'
         else:
@@ -150,7 +150,7 @@ def asave():
             f = open(UPLOAD_FOLDER+filename+'.png','a')
             f.write(image)
             f.close()
-            qqq = Ques(fid=session['fid'], inum=num, title=title, filename=filename)
+            qqq = Ans(fid=session['fid'], qno=request.form['qnum'], inum=num, title=title, filename=filename)
             db_session.add(qqq)
             db_session.commit()
             return redirect('/uploads/'+filename+'.png')
