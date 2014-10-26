@@ -3,34 +3,66 @@
 		<meta charset="utf-8">
 		<script src="/static/js/jquery.js"></script>
 		<style type="text/css">
+			body{
+				background-image: url(/static/img/q_bg.png);
+				background-color: black;
+			}
+			#container{
+				width: 916px;
+				padding: 0;
+				margin: 0 auto;
+			}
 			.q{
-			width: 750px;
-			height: 450px;
+			width: 917px;
+			height: 594px;
 			border: 1px solid black;
+			background-image: url(/static/img/q_img_problem.png);
+			margin-top: 8px; 
+			margin-bottom: 8px; 
 			}
 			.qb{
-			height: 50px;
+			height: 100px;
+			width: 827px;
+			margin: 15px;
 			font-size: 49px;
 			background-color: gray;
 			padding-left: 60px;
 			opacity: 0.4;
 			}
+			.qb b{
+				font-size: 20pt;
+				padding-top: 40px;
+				margin-top: 60px;
+				margin-left: 40px;
+			}
 			.uimg{
 			position: absolute;
+			width: 65px;
+			height: 65px;
+			margin-top: 30px;
+			margin-left: 30px;
 			}
 			.qimg{
 			position: absolute;
-			width: 750px;
-			height: 450px;
+			width: 917px;
+			height: 594px;
 			}
 			#mq{
-				width: 750px;
-				height: 50px;
-				margin-bottom: 20px;
-				border-radius: 10px;
-				background-color: green;
+				width: 917px;
+				height: 110px;
+				background-image: url(/static/img/q_button_ask.png);
 				text-align: center;
 				font-size: 45px;
+			}
+			.ans{
+				width: 130px;
+				height: 50px;
+				background-image: url(/static/img/q_button_answer.png);
+				text-align: center;
+				font-size: 45px;
+				position: relative;
+				right: 30px;
+				bottom: 30px;
 			}
 			a{
 				text-decoration: none;
@@ -40,23 +72,28 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('.qb').click(function(e){
-					document.location="view?id="+e.target.id
+					document.location=e.target.id
 				});
 			});
 		</script>
 	</head>
 	<body>
-		<div id="mq">
-			<a href="/edit?mode=q" onclick="window.open(this.href,'_blank','width=1000,height=700, scrollbars=yes');return false;">질문하기</a>
-		</div>
-		{%for ques in list%}
-			<div class="q">
-				<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
-				<img class="qimg" src="/uploads/{{ques.filename}}.png">
-				<div class="qb" id="{{ques.no}}">
-					{{ques.title}}
-				</div>
+		<div id="container">
+			<div id="mq" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">
+				&nbsp;
 			</div>
-		{%endfor%}
+			{%for ques in list%}
+				<div class="q">
+					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
+					<img class="qimg" src="/uploads/{{ques.filename}}.png">
+					<div class="qb" id="{{ques.inum}}">
+						<b>{{ques.title}}</b>
+					</div>
+					<div class="ans" onclick="window.open('/edit?mode=a&amp;qnum={{ques.inum}}','_blank','width=1232,height=708, scrollbars=yes');return false;">
+						 
+					</div>
+				</div>
+			{%endfor%}	
+		</div>
 	</body>
-</html>
+</html> 

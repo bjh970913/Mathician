@@ -6,6 +6,7 @@ from models import *
 from base64 import *
 import os
 import random
+import uuid
 
 SECRET_KEY = 'development key'
 DEBUG = True
@@ -34,9 +35,21 @@ def isloggedin():
         return True
     return False
 
+def randomurl(leng):
+    return str(uuid.uuid4()).upper().replace("-","")[0:leng]
+
 @app.route('/')
 def index():
     return render_template('index.html');
+
+@app.route('/<inum>')
+def view_n(inum):
+    if isloggedin():
+        ques = db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.no, Ques.inum).filter_by(inum=inum).all()
+        alist = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(qno=ques[0].no).all()
+        return render_template('view.html', ques = ques, alist = alist, ismine=(session['fid']==ques[0].fid));    
+    else:
+        return redirect('/')
 
 @app.route('/login')
 def login():
@@ -76,7 +89,7 @@ def logout():
 @app.route('/main')
 def main():
     if isloggedin():
-        list=db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.no).all()
+        list=db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.inum).all()
         return render_template('main.html', list = list);
     else:
         return redirect('/')
@@ -125,7 +138,7 @@ def qsave():
             image = request.form['context']
             image = b64decode(image.split(",")[-1])
             username = session['name'].encode('utf-8')
-            num = str(random.randint(1,100000000000000)).encode('utf-8')
+            num = randomurl(7)
             filename = b64encode(title+username+num)
             f = open(UPLOAD_FOLDER+filename+'.png','a')
             f.write(image)
@@ -145,12 +158,13 @@ def asave():
             image = request.form['context']
             image = b64decode(image.split(",")[-1])
             username = session['name'].encode('utf-8')
-            num = str(random.randint(1,100000000000000)).encode('utf-8')
+            num = randomurl(7)
             filename = b64encode(title+username+num)
             f = open(UPLOAD_FOLDER+filename+'.png','a')
             f.write(image)
             f.close()
-            qqq = Ans(fid=session['fid'], qno=request.form['qnum'], inum=num, title=title, filename=filename)
+            ques = db_session.query(Ques.no,Ques.inum).filter_by(inum=request.form['qnum']).all()
+            qqq = Ans(fid=session['fid'], qno=ques[0].no, inum=num, title=title, filename=filename)
             db_session.add(qqq)
             db_session.commit()
             return redirect('/uploads/'+filename+'.png')
