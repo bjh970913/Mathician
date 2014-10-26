@@ -34,7 +34,7 @@
 				edit['isedit'] = false;
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
-					width: "245px"
+					width: "220px"
 				}, 1500 );
 				$("#close").hide();
 			}
@@ -53,7 +53,7 @@
 			function formula(){
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
-					width: "500px"
+					width: "220px"
 				}, 1500 );
 				$('#menu2').css('z-index',11);
 				$('#formula').slideDown();
@@ -72,7 +72,7 @@
 			function shape(){
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
-					width: "245px"
+					width: "220px"
 				}, 1500 );
 				$("#shape").slideDown();
 				$("#close").show();
@@ -80,7 +80,7 @@
 			function draw(){
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
-					width: "245px"
+					width: "220px"
 				}, 1500 );
 				$("#draw").slideDown();
 				$("#close").show();
@@ -88,7 +88,7 @@
 			function text(){
 				$("#menu2 div").slideUp();
 				$("#menu2").animate({
-					width: "500px"
+					width: "220px"
 				}, 1500 );
 				$('#menu2').css('z-index',11);
 				$("#addtext").slideDown();
@@ -99,7 +99,7 @@
 				if($('#edittext').val().length==0)
 				{
 					alert("Plese enter text");
-					return false;	
+					return false;
 				}
 				if(isNaN(size))
 				{
@@ -126,7 +126,7 @@
 					canvas.add(text);
 					close_m2();
 				}
-			}			
+			}
 			function save(){
 				if($('#title').val()=="")
 				{
@@ -144,7 +144,7 @@
 				$('#edittext').val('')
 				$('#edittext').val('')
 			}
-			
+
 			/*
 			var edit = {isedit:false}
 
@@ -161,6 +161,7 @@
 		</script>
 		<style type="text/css">
 			body{
+				background-image: url(/static/img/ed_bg.png);
 				margin: 0;
 				min-width:600px;
 			}
@@ -170,13 +171,13 @@
 				left: 0;
 				width: 100%;
 				height: 52px;
-				background-color: #25232a;
+				background-color: #000000;
 			}
 			#menu1{
 				color: white;
 				width: 65px;
 				height: -webkit-calc(100% - 52px);
-				background-color: #25232a;
+				background-color: #000000;
 				position: absolute;
 				top: 52px;
 				left: 0;
@@ -200,7 +201,7 @@
 			}
 			#menu2{
 				color: black;
-				width: 245px;
+				width: 220px;
 				height: -webkit-calc(100% - 52px);
 				background-color: #ffffff;
 				box-shadow: #dddddd 2px 0px;
@@ -209,40 +210,46 @@
 				left: 65px;
 			}
 			#title-bar{
-				width: -webkit-calc(100% - 310px);
+				width: -webkit-calc(100% - 415px);
 				height: 60px;
-				background-color: #dddcdd;
+				border-bottom: 2px solid #d2d2d2;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				background-color: #ffffff;
 				position: absolute;
-				top: 52px;
-				left: 310px;
+				top: 98px;
+				left: 360px;
 			}
 			#title{
-				margin-top: 8px;
-				margin-left: 5px;
-				height: 44px;
+				margin-top: 10px;
+				margin-left: 15px;
+				height: 40px;
 				width: -webkit-calc(100% - 125px);
 				border: none;
-				background-color: #dddcdd;
+				background-color: #ffffff;
 				font-size: 34px;
+				outline-style: none;
 			}
 			#save{
-				width: 95px;
-				height: 30px;
-				margin-top: 15px;
-				margin-right: 20px;
+				width: 117px;
+				height: 32px;
+				margin-top: 13px;
+				margin-right: 35px;
 				float: right;
-				line-height: 30px;
-				background-color: green;
-				text-align: center;
-				border-radius: 7px;
+				cursor:pointer;
+				background-image: url(/static/img/ed_button_sub_pr.png);
 			}
+			#save:hover{background-image: url(/static/img/ed_button_sub.png);}
 			#edit{
-				background-color: #f1f0ec;
-				width: -webkit-calc(100% - 315px);
-				height: -webkit-calc(100% - 112px);
+				background-color: #ffffff;
+				width: -webkit-calc(100% - 415px);
+				height: -webkit-calc(100% - 222px);
 				position: absolute;
-				top: 112px;
-				left: 310px;
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+				top: 160px;
+				right:100px;
+				left: 360px;
 			}
 			#c{
 				background-color: transparent;
@@ -274,7 +281,8 @@
 	</head>
 	<body>
 		<div id="header">
-			
+			<img src="/static/img/ed_logo.png">
+			<div id="save" onclick="save()"></div>
 		</div>
 		<div id="menu1">
 			<ul>
@@ -282,7 +290,7 @@
 				<li onclick="close_m2()" id="btnAddgraph">그래프</li>
 				<li onclick="shape()">도형</li>
 				<li onclick="draw()">그리기</li>
-				<li onclick="text()" id="text" style="font-size: 30">T</li>
+				<li onclick="text()" id="text">텍스트</li>
 				<li id="delete-item" style="font-size: 30">X</li>
 				<li id="btnClear" style="font-size: 30">C</li>
 			</ul>
@@ -312,7 +320,7 @@
 		</div>
 		<div id="title-bar">
 			<form method="POST" id="save_form" action="/{{mode}}" enctype="multipart/form-data">
-				<input id="title" type="text" name="title">
+				<input id="title" type="text" name="title" placeholder="제목을 입력하세요.">
 				<input id="context" type="hidden" name="context">
 				<input type="hidden" value="{{qnum}}" name="qnum">
 				<div id="save" onclick="save()">SAVE</div>
