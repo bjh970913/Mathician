@@ -179,6 +179,7 @@ def my_profile():
         #'a'+1
         ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+session.get('fid'))).fetchall()
         ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=session.get('fid')).all()
+        return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
         'a'+1
     else:
         return redirect('/')

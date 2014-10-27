@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="/static/js/jquery.js"></script>
+		<style type="text/css">
+			body{
+				background-image: url(/static/img/q_bg.png);
+				background-color: black;
+			}
+			#container{
+				width: 916px;
+				padding: 0;
+				margin: 0 auto;
+			}
+			.q{
+			width: 917px;
+			height: 594px;
+			border: 1px solid black;
+			background-image: url(/static/img/q_img_problem.png);
+			margin-top: 8px; 
+			margin-bottom: 8px; 
+			}
+			.qb{
+			height: 100px;
+			width: 827px;
+			margin: 15px;
+			font-size: 49px;
+			background-color: gray;
+			padding-left: 60px;
+			opacity: 0.4;
+			}
+			.a{
+			width: 917px;
+			height: 594px;
+			border: 1px solid black;
+			background-image: url(/static/img/q_img_problem.png);
+			margin-top: 8px; 
+			margin-bottom: 8px; 
+			}
+			.uimg{
+			position: absolute;
+			width: 65px;
+			height: 65px;
+			margin-top: 30px;
+			margin-left: 30px;
+			}
+			.qimg{
+			position: absolute;
+			width: 917px;
+			height: 594px;
+			}
+			a{
+			font-size: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.qb').click(function(e){
+					document.location=e.target.id
+				});
+				$('.fb_share').click(function(e){
+                                        window.open("http://www.facebook.com/sharer/sharer.php?u="+window.location.host+"/"+e.target.id,"")
+                                });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="buttons">
+				<div>
+					<a href="/edit?mode=a&amp;qnum={{ques[0].inum}}" onclick="window.open(this.href,'_blank','width=1232,height=708, scrollbars=yes');return false;">답변하기</a>
+				</div>
+				{%if ismine%}
+				<div>
+					<a href="/delete?qnum={{ques[0].inum}}">삭제하기</a>
+				</div>
+				{%endif%}
+			</div>
+
+			질문목록
+
+			{%if ques|length > 0%}
+                                {%for q in ques%}
+                                	<div class="q">
+						<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
+						<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
+						<div class="qb" id="{{ques[0].inum}}">
+						{{q.title}}
+                                	        <a class="fb_share" id="{{ques[0].inum}}">
+                        	                공유
+                	                        </a>
+        	                        </div>
+   	                     </div>
+				{%endfor%}
+                        {%endif%}
+			
+			답변목록
+			
+			{%if ans|length > 0%}
+				{%for a in ans%}
+					<div class="a">
+						<img class="uimg" src="https://graph.facebook.com/{{a.fid}}/picture?type=small">
+						<img class="qimg" src="/uploads/{{a.filename}}.png">
+						<div class="qb" id="{{ans.no}}">
+							{{a.title}}
+						</div>
+					</div>
+				{%endfor%}
+			{%else%}
+				<div>
+					No answer;;
+				</div>
+			{%endif%}
+		</div>
+	</body>
+</html>
