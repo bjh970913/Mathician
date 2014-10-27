@@ -4,6 +4,7 @@ from flask_oauth import OAuth
 from database import *
 from models import *
 from base64 import *
+from sqlalchemy.sql import text
 import os
 import random
 import uuid
@@ -89,7 +90,7 @@ def logout():
 @app.route('/main')
 def main():
     if isloggedin():
-        list=db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.inum).all()
+	list = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as cnt from ques')).fetchall()
         return render_template('main.html', list = list);
     else:
         return redirect('/')
@@ -168,6 +169,17 @@ def asave():
             db_session.add(qqq)
             db_session.commit()
             return redirect('/uploads/'+filename+'.png')
+    else:
+        return redirect('/')
+
+@app.route('/profile')
+def my_profile():
+    if isloggedin():
+        #ques = db_session.execute(text('select ques.no, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques')).fetchall()
+        #'a'+1
+        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+session.get('fid'))).fetchall()
+        ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=session.get('fid')).all()
+        'a'+1
     else:
         return redirect('/')
 
