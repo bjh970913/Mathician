@@ -30,14 +30,6 @@
 					$("#textbox").val('')
 				});
 			});
-			function close_m2(){
-				edit['isedit'] = false;
-				$("#menu2 div").slideUp();
-				$("#menu2").animate({
-					width: "220px"
-				}, 1500 );
-				$("#close").hide();
-			}
 			function chmode(){
 				if($('#textbox').css('z-index') =="10"){
 					$('#chmod').text("M -> T");
@@ -68,6 +60,14 @@
 					canvas.setActiveObject(oImg);
 				});
 				close_m2();
+			}
+			function graph(){
+				$("#menu2 div").slideUp();
+				$("#menu2").animate({
+					width: "220px"
+				}, 1500 );
+				$("#graph").slideDown();
+				$("#close").show();
 			}
 			function shape(){
 				$("#menu2 div").slideUp();
@@ -203,8 +203,8 @@
 				color: black;
 				width: 220px;
 				height: -webkit-calc(100% - 52px);
-				background-color: #ffffff;
-				box-shadow: #dddddd 2px 0px;
+				background-color: #37698c;
+
 				position: absolute;
 				top: 52px;
 				left: 65px;
@@ -277,6 +277,15 @@
 			#context{
 				margin-top: 300px;
 			}
+			#btnAddCircle{margin:20px; border-radius: 10px;}
+			#btnAdd3{margin:20px; border-radius: 10px;}
+			#btnAdd4{margin:20px; border-radius: 10px;}
+			#btnAdd5{margin:20px; border-radius: 10px;}
+			#btnAdd6{margin:20px; border-radius: 10px;}
+			#btnAddGraph{margin:20px; border-radius: 10px;}
+			#btnAddLine{margin:20px; border-radius: 10px;}
+			#btnAddCurve{margin:20px; border-radius: 10px;}
+
 		</style>
 	</head>
 	<body>
@@ -287,20 +296,27 @@
 		<div id="menu1">
 			<ul>
 				<li onclick="formula()">수학기호</li>
-				<li onclick="close_m2()" id="btnAddgraph">그래프</li>
+				<li onclick="graph()">그래프</li>
 				<li onclick="shape()">도형</li>
 				<li onclick="draw()">그리기</li>
 				<li onclick="text()" id="text">텍스트</li>
-				<li id="delete-item" style="font-size: 30">X</li>
-				<li id="btnClear" style="font-size: 30">C</li>
+				<li id="delete-item" style="margin-top:10px"><img src="/static/img/ed_icon_select_del.png"></li>
+				<li id="btnClear" style="margin-top:10px"><img src="/static/img/ed_icon_all_del.png"></li>
 			</ul>
 		</div>
 		<div id="menu2">
 			<button id="close" onclick="close_m2()">X</button>
+			<div id="graph">
+				<button id="btnAddGraph"><img src="/static/img/ed_icon_graph.png" width="70" height="70"></button><br>
+				<button id="btnAddLine"><img src="/static/img/ed_icon_line.png" width="70" height="70"></button><br>
+				<button id="btnAddCurve"><img src="/static/img/ed_icon_wipe.png" width="70" height="70"></button><br>
+			</div>
 			<div id="shape">
-				<button id="btnAddCircle">Add circle</button><br>
-				<button id="btnAddLine">Add line</button><br>
-				<button id="btnAddCurve">Add curve</button><br>
+				<button id="btnAddCircle"><img src="/static/img/ed_icon_circle.png" width="70" height="70"></button><br>
+				<button id="btnAdd3"><img src="/static/img/ed_icon_3.png" width="70" height="70"></button><br>
+				<button id="btnAdd4"><img src="/static/img/ed_icon_4.png" width="70" height="70"></button><br>
+				<button id="btnAdd5"><img src="/static/img/ed_icon_5.png" width="70" height="70"></button><br>
+				<button id="btnAdd6"><img src="/static/img/ed_icon_6.png" width="70" height="70"></button><br>
 			</div>
 			<div id="draw">
 				<input type="color" id="colorpicker"/><br>

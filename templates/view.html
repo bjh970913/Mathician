@@ -13,45 +13,84 @@
 				margin: 0 auto;
 			}
 			.q{
-			width: 917px;
-			height: 594px;
-			border: 1px solid black;
-			background-image: url(/static/img/q_img_problem.png);
-			margin-top: 8px; 
-			margin-bottom: 8px; 
+				width: 917px;
+				height: 594px;
+				border: 1px solid black;
+				background-image: url(/static/img/q_img_problem.png);
+				margin-top: 8px;
+				margin-bottom: 8px;
 			}
 			.qb{
-			height: 100px;
-			width: 827px;
-			margin: 15px;
-			font-size: 49px;
-			background-color: gray;
-			padding-left: 60px;
-			opacity: 0.4;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				height: 100px;
+				width: 827px;
+				margin: 15px;
+				font-size: 49px;
+				background-color: white;
+				padding-left: 60px;
+				border-bottom: 2px solid #d2d2d2;
+
+			}
+			.qb b{
+				margin: 100px;
+				line-height: 100px;
+				font-size: 30pt;
+				padding-top: 40px;
+				margin-top: 60px;
+				margin-left: 40px;
 			}
 			.a{
-			width: 917px;
-			height: 594px;
-			border: 1px solid black;
-			background-image: url(/static/img/q_img_problem.png);
-			margin-top: 8px; 
-			margin-bottom: 8px; 
+				width: 917px;
+				height: 594px;
+				border: 1px solid black;
+				background-image: url(/static/img/q_img_problem.png);
+				margin-top: 8px;
+				margin-bottom: 8px;
 			}
 			.uimg{
-			position: absolute;
-			width: 65px;
-			height: 65px;
-			margin-top: 30px;
-			margin-left: 30px;
+				position: absolute;
+				width: 65px;
+				height: 65px;
+				margin-top: 30px;
+				margin-left: 30px;
 			}
 			.qimg{
-			position: absolute;
-			width: 917px;
-			height: 594px;
+				position: absolute;
+				padding-top:130px;
+				width: 700px;
+				height: 450px;
 			}
 			a{
-			font-size: 10px;
+				font-size: 10px;
 			}
+			.ans{
+				width: 130px;
+				height: 50px;
+				background-image: url(/static/img/q_button_answer_pr.png);
+				text-align: center;
+				font-size: 45px;
+				position: relative;
+				left: 740px;
+				top: 570px;
+				cursor:pointer;
+			}
+			.ans:hover{
+				background-image: url(/static/img/q_button_answer.png);
+			}
+			.back {
+		      position: absolute;
+		      top: 0;
+		      left: 0;
+		      text-align: right;
+		      display: block;
+		      padding: -14px;
+		      width: 100%;
+		      font-weight: bold;
+		      font-size: 20px;
+		      color: #fff;
+		    }
+
 		</style>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -59,28 +98,27 @@
 					document.location=e.target.id
 				});
 				$('.fb_share').click(function(e){
-                                        window.open("http://www.facebook.com/sharer/sharer.php?u="+window.location.host+"/"+e.target.id,"")
-                                });
+                    window.open("http://www.facebook.com/sharer/sharer.php?u="+window.location.host+"/"+e.target.id,"")
+                });
 			});
 		</script>
 	</head>
 	<body>
 		<div id="container">
 			<div id="buttons">
-				<div>
-					<a href="/edit?mode=a&amp;qnum={{ques[0].inum}}" onclick="window.open(this.href,'_blank','width=1232,height=708, scrollbars=yes');return false;">답변하기</a>
+				<div class="ans" onclick="window.open('/edit?mode=a&amp;qnum={{ques[0].inum}}','_blank','width=1232,height=708, scrollbars=yes');return false;">
 				</div>
 				{%if ismine%}
-				<div>
+				<!--<div>
 					<a href="/delete?qnum={{ques[0].inum}}">삭제하기</a>
-				</div>
+				</div>-->
 				{%endif%}
 			</div>
 			<div class="q">
 				<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
 				<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
 				<div class="qb" id="{{ques[0].inum}}">
-					{{ques[0].title}}
+					<b>{{ques[0].title}}</b>
 					<a class="fb_share" id="{{ques[0].inum}}">
 	                           	     공유
 	                   	        </a>
@@ -92,7 +130,7 @@
 						<img class="uimg" src="https://graph.facebook.com/{{ans.fid}}/picture?type=small">
 						<img class="qimg" src="/uploads/{{ans.filename}}.png">
 						<div class="qb" id="{{ans.no}}">
-							{{ans.title}}
+								<b>{{ans.title}}</b>
 						</div>
 					</div>
 				{%endfor%}
@@ -102,5 +140,9 @@
 				</div>
 			{%endif%}
 		</div>
+		<div class="back">
+      		<img src="/static/img/nav_logo.png" style="float:left;margin-left:15px">
+    </a>
+  </div>
 	</body>
 </html>

@@ -17,16 +17,22 @@ $(function () {
 });
 
   $("#btnAddCircle").click(function(){
-    canvas.add(new fabric.Circle({
+    fabric.Image.fromURL('/static/img/ed_circle.png', function(img) {
+      var oImg = img.set({ left: 100, top: 100, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
 
-      radius: 30,
-      top: 100,
-      left: 100,
-      strokeWidth: 0.4,
-      fill: '#fff',
-      stroke: '#000000'
+    });
+});
+  $("#btnAddGraph").click(function(){
+    fabric.Image.fromURL('/static/img/graph.png', function(img) {
+      var oImg = img.set({ left: 100, top: 100, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
 
-    }));
+    });
 });
   $("#btnAddLine").click(function(){
     canvas.add(new fabric.Line([50, 50, 200, 0], {
@@ -53,9 +59,9 @@ $(function () {
 
 });
 
-$("#btnAddgraph").click(function(){
-    fabric.Image.fromURL('/static/img/graph.png', function(img) {
-      var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
+$("#btnAdd3").click(function(){
+    fabric.Image.fromURL('/static/img/ed_triangle.png', function(img) {
+      var oImg = img.set({ left: 100, top: 100, }).scale(0.9);
       canvas.add(oImg).renderAll();
       canvas.item(0).hasRotatingPoint = false;
       canvas.setActiveObject(oImg);
@@ -63,7 +69,36 @@ $("#btnAddgraph").click(function(){
     });
 
 });
+$("#btnAdd4").click(function(){
+    fabric.Image.fromURL('/static/img/ed_square.png', function(img) {
+      var oImg = img.set({ left: 100, top: 100, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
 
+    });
+
+});
+$("#btnAdd5").click(function(){
+    fabric.Image.fromURL('/static/img/ed_pentagon.png', function(img) {
+      var oImg = img.set({ left: 100, top: 100, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
+$("#btnAdd6").click(function(){
+    fabric.Image.fromURL('/static/img/ed_hexagon.png', function(img) {
+      var oImg = img.set({ left: 100, top: 100, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
 $("#btnAddfow").click(function(){
     var fow = new fabric.IText('num', {
   fontFamily: 'consolas',
