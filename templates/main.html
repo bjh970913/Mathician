@@ -83,11 +83,6 @@
 			}
 		</style>
 		<script type="text/javascript">
-			$(document).ready(function(){
-				$('.qb').click(function(e){
-					document.location=e.target.id
-				});
-			});
 		</script>
 	</head>
 	<body>
@@ -96,10 +91,10 @@
 				&nbsp;
 			</div>
 			{%for ques in list%}
-				<div class="q">
+				<div class="q" onclick="window.location='{{ques.inum}}'">
 					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
 					<img class="qimg" src="/uploads/{{ques.filename}}.png">
-					<div class="qb" id="{{ques.inum}}">
+					<div class="qb">
 						<b>{{ques.title}}</b>
 					</div>
 					<div class="ans" onclick="window.open('/edit?mode=a&amp;qnum={{ques.inum}}','_blank','width=1232,height=708, scrollbars=yes');return false;">
