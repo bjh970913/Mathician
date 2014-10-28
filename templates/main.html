@@ -29,7 +29,7 @@
 				width: 817px;
 				margin: 20px;
 				font-size: 49px;
-				background-color: white;
+				background-color: transparent;
 				padding-left: 60px;
 				border-bottom: 2px solid #d2d2d2;
 			}
@@ -120,11 +120,11 @@
 		$("document").ready(function () {
 				$(".click").css("z-index","-1")
 				$(".click").mouseover(function (e) {
-				 $(e.target).children(".click").show();
-				  $("#count").css('opacity','0.8'); 
+				 $(e.target).children(".click").css("z-index","1");
+				  $("#count").css('opacity','0.8');
 				})
 				.mouseout(function (e) {
-					$(e.target).children(".click").hide();
+					$(e.target).children(".click").css("z-index","-1");
 					  $("#count").css('opacity','1');
 					})
 					.css('cursor', 'pointer');
