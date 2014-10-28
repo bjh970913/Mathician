@@ -20,6 +20,7 @@
 				background-image: url(/static/img/q_img_problem.png);
 				margin-top: 8px;
 				margin-bottom: 8px;
+				z-index:100;
 			}
 			.q:hover{opacity: 0.8;}
 			.qb{
@@ -63,20 +64,7 @@
 			}
 			#mq:hover{
 				background-image: url(/static/img/q_button_ask.png);
-			}
-			.ans{
-				width: 130px;
-				height: 50px;
-				background-image: url(/static/img/q_button_answer_pr.png);
-				text-align: center;
-				font-size: 45px;
-				position: relative;
-				left: 740px;
-				top: 370px;
-				cursor:pointer;
-			}
-			.ans:hover{
-				background-image: url(/static/img/q_button_answer.png);
+
 			}
 			a{
 				text-decoration: none;
@@ -84,6 +72,11 @@
 			}
 		</style>
 		<script type="text/javascript">
+			$("document").ready(function () {
+				$(".q").mouseover(function () { $(".click").show(); })
+					.mouseout(function () { $(".click").hide(); })
+					.css('cursor', 'pointer');
+				});
 		</script>
 	</head>
 	<body>
@@ -94,12 +87,10 @@
 			{%for ques in list%}
 				<div class="q" onclick="window.location='{{ques.inum}}'">
 					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
-					<img class="qimg" src="/uploads/{{ques.filename}}.png">
+					<div class="click" style="position: absolute;display:none;right:147; margin-top:15px"><img src="/static/img/q_img_click.png"></div>
+					<div ><img class="qimg" src="/uploads/{{ques.filename}}.png"></div>
 					<div class="qb">
 						<b>{{ques.title}}</b>
-					</div>
-					<div class="ans" onclick="window.open('/edit?mode=a&amp;qnum={{ques.inum}}','_blank','width=1232,height=708, scrollbars=yes');return false;">
-
 					</div>
 				</div>
 			{%endfor%}
