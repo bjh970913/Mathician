@@ -45,6 +45,7 @@
 				height: 65px;
 				margin-top: 30px;
 				margin-left: 30px;
+				z-index: 40;
 			}
 			.qimg{
 				position: absolute;
@@ -83,6 +84,12 @@
 			}
 		</style>
 		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.uimg').click(function(e){
+					window.location='/profile/'+e.target.id;
+					e.stopPropagation();
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -92,7 +99,7 @@
 			</div>
 			{%for ques in list%}
 				<div class="q" onclick="window.location='{{ques.inum}}'">
-					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
+					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small" id='{{ques.fid}}'">
 					<img class="qimg" src="/uploads/{{ques.filename}}.png">
 					<div class="qb">
 						<b>{{ques.title}}</b>

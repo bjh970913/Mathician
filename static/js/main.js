@@ -16,18 +16,6 @@ $(function () {
 
 });
 
-  $("#btnAddCircle").click(function(){
-    canvas.add(new fabric.Circle({
-
-      radius: 30,
-      top: 100,
-      left: 100,
-      strokeWidth: 0.4,
-      fill: '#fff',
-      stroke: '#000000'
-
-    }));
-});
   $("#btnAddLine").click(function(){
     canvas.add(new fabric.Line([50, 50, 200, 0], {
         fill: 'black',
@@ -53,6 +41,61 @@ $(function () {
 
 });
 
+$("#btnAddpentagon").click(function(){
+    fabric.Image.fromURL('/static/img/ed_pentagon.png', function(img) {
+      var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
+
+$("#btnAddcircle").click(function(){
+    fabric.Image.fromURL('/static/img/ed_circle.png', function(img) {
+      var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
+
+$("#btnAddhexagon").click(function(){
+    fabric.Image.fromURL('/static/img/ed_hexagon.png', function(img) {
+      var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
+
+$("#btnAddtriangle").click(function(){
+    fabric.Image.fromURL('/static/img/ed_triangle.png', function(img) {
+      var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
+
+$("#btnAddsquare").click(function(){
+    fabric.Image.fromURL('/static/img/ed_square.png', function(img) {
+      var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
+      canvas.add(oImg).renderAll();
+      canvas.item(0).hasRotatingPoint = false;
+      canvas.setActiveObject(oImg);
+
+    });
+
+});
+
 $("#btnAddgraph").click(function(){
     fabric.Image.fromURL('/static/img/graph.png', function(img) {
       var oImg = img.set({ left: 30, top: 30, }).scale(0.9);
@@ -63,6 +106,8 @@ $("#btnAddgraph").click(function(){
     });
 
 });
+
+
 
 $("#btnAddfow").click(function(){
     var fow = new fabric.IText('num', {

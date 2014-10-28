@@ -90,7 +90,7 @@ def logout():
 @app.route('/main')
 def main():
     if isloggedin():
-	list = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as cnt from ques')).fetchall()
+	list = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.qno = ques.no) as cnt from ques')).fetchall()
         return render_template('main.html', list = list);
     else:
         return redirect('/')
@@ -147,7 +147,7 @@ def qsave():
             qqq = Ques(fid=session['fid'], inum=num, title=title, filename=filename)
             db_session.add(qqq)
             db_session.commit()
-            return redirect('/uploads/'+filename+'.png')
+            return  "<script>window.close()</script>";
     else:
         return redirect('/')
 
@@ -168,7 +168,7 @@ def asave():
             qqq = Ans(fid=session['fid'], qno=ques[0].no, inum=num, title=title, filename=filename)
             db_session.add(qqq)
             db_session.commit()
-            return redirect('/uploads/'+filename+'.png')
+            return "<script>window.close()</script>"
     else:
         return redirect('/')
 
@@ -179,6 +179,18 @@ def my_profile():
         #'a'+1
         ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+session.get('fid'))).fetchall()
         ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=session.get('fid')).all()
+        return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
+        'a'+1
+    else:
+        return redirect('/')
+
+@app.route('/profile/<fid>')
+def show_profile(fid):
+    if isloggedin():
+        #ques = db_session.execute(text('select ques.no, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques')).fetchall()
+        #'a'+1
+        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+fid)).fetchall()
+        ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=fid).all()
         return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
         'a'+1
     else:
