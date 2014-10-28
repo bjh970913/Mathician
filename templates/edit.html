@@ -8,6 +8,7 @@
 			org = { mathdox:{formulaeditor:{options:{dragPalette:true, paletteShow: "none", useBar:true}}}};
 		</script>
 		<script type='text/javascript' src='org/mathdox/formulaeditor/main.js'></script>
+		<script src="/static/js/edit.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				w = $('#edit').width();
@@ -257,8 +258,8 @@
 				outline-style: none;
 			}
 			#save{
-				width: 117px;
-				height: 32px;
+				width: 123px;
+				height: 39px;
 				margin-top: 13px;
 				margin-right: 35px;
 				float: right;
@@ -266,6 +267,24 @@
 				background-image: url(/static/img/ed_button_sub_pr.png);
 			}
 			#save:hover{background-image: url(/static/img/ed_button_sub.png);}
+			#delete-item img:hover{
+				background-image: url(/static/img/ed_icon_select_del_pr.png);
+			}
+			#btnClear img:hover{
+				background-image: url(/static/img/ed_icon_all_del_pr.png);
+			}
+			#freedraw{
+				margin:20px; border-radius: 10px;
+			}
+			#freedraw #on{
+				content: url(/static/img/ed_icon_draw.png);
+			}
+			#freedraw #off{
+				content: url(/static/img/ed_icon_draw_off.png);
+			}
+			#new_text{
+				list-style: none;
+			}
 			#edit{
 				background-color: #ffffff;
 				width: -webkit-calc(100% - 415px);
@@ -311,6 +330,7 @@
 			#btnAddGraph{margin:20px; border-radius: 10px;}
 			#btnAddLine{margin:20px; border-radius: 10px;}
 			#btnAddCurve{margin:20px; border-radius: 10px;}
+			#btnAddtext{display: inline-block; margin:20px; border-radius: 10px;}
 
 		</style>
 	</head>
@@ -345,8 +365,7 @@
 				<button id="btnAdd6"><img src="/static/img/ed_icon_6.png" width="70" height="70"></button><br>
 			</div>
 			<div id="draw">
-				<input type="color" id="colorpicker"/><br>
-				<button id="freedraw" class="btn btn-info">drawing mode ON/OFF</button>
+				<button id="freedraw"><img width="80" height="80" id="off"></button>
 			</div>
 			<div id='formula'>
 				<p>Press purple part to type formula.</p>
@@ -355,9 +374,8 @@
 			</div>
 			<div id='addtext'>
 				<textarea id="edittext" cols=28></textarea>
-				<input type="text" id="fontsize">
-				<button onclick="add_text()">+</button>
-				<button onclick="new_text()">N</button>
+				font size&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<input type="text" id="fontsize">
+				<button id="btnAddtext" onclick="add_text()"><img src="/static/img/ed_icon_text.png" width="40" height="40"></button>
 			</div>
 		</div>
 		<div id="title-bar">
