@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -12,6 +11,7 @@
 				width: 916px;
 				padding: 0;
 				margin: 0 auto;
+				margin-top: 80;
 
 			}
 			.q{
@@ -55,22 +55,55 @@
 				width: 917px;
 				height: 594px;
 			}
-			#mq{
-				width: 917px;
-				height: 110px;
-				background-image: url(/static/img/q_button_ask_pr.png);
-				text-align: center;
-				font-size: 45px;
-				cursor:pointer;
-			}
-			#mq:hover{
-				background-image: url(/static/img/q_button_ask.png);
-
-			}
 			a{
 				text-decoration: none;
 				color: black;
 			}
+			.back {
+		      position: absolute;
+		      top: 0;
+		      left: 0;
+		      text-align: right;
+		      display: block;
+		      padding: -14px;
+		      width: 100%;
+		      font-weight: bold;
+		      font-size: 20px;
+		      color: #fff;
+		    }
+		    #upload_prob:hover{background-image: url(/static/img/nav_button_pr.png);}
+		    #my_page:hover{background-image: url(/static/img/nav_button_pr.png);}
+		    #solve_prob:hover{background-image: url(/static/img/nav_button_pr.png);}
+		    #upload_prob{
+		    	position:absolute;
+		    	top:12;
+		    	right:350;
+		    	cursor:pointer;
+		    	width:118;
+		    	height:37;
+		    	line-height:2;
+		    	text-align:center;
+		    }
+		    #my_page{
+		    	position:absolute;
+		    	top:12;
+		    	right:50;
+		    	cursor:pointer;
+		    	width:118;
+		    	height:37;
+		    	line-height:2;
+		    	text-align:center;
+		    }
+		    #solve_prob{
+		    	position:absolute;
+		    	top:12;
+		    	right:200;
+		    	cursor:pointer;
+		    	width:118;
+		    	height:37;
+		    	line-height:2;
+		    	text-align:center;
+		    }
 		</style>
 		<script type="text/javascript">
 			$("document").ready(function () {
@@ -79,7 +112,7 @@
 					.css('cursor', 'pointer');
 				});
 			$(document).ready(function(){
-				$('.uimg').click(function(e){
+				$('#my_page').click(function(e){
 					window.location='/profile/'+e.target.id;
 					e.stopPropagation();
 				});
@@ -88,9 +121,6 @@
 	</head>
 	<body>
 		<div id="container">
-			<div id="mq" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">
-				&nbsp;
-			</div>
 			{%for ques in list%}
 				<div class="q" onclick="window.location='{{ques.inum}}'">
 					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
@@ -103,5 +133,11 @@
 				</div>
 			{%endfor%}
 		</div>
+		<div class="back">
+      		<img src="/static/img/nav_logo.png" style="float:left;margin-left:15px;margin-top:20px;">
+      		<div id="upload_prob" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">문제올리기</div>
+      		<div id="solve_prob" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">문제풀기</div>
+      		<div id="my_page" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">마이페이지</div>
+ 		</div>
 	</body>
 </html>
