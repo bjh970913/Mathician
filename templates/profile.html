@@ -154,17 +154,16 @@
 		    }
 		</style>
 		<script type="text/javascript">
-			$(document).ready(function(){
-				$('.qb').click(function(e){
-					document.location=e.target.id
-				});
-				$('.fb_share').click(function(e){
-                                        window.open("http://www.facebook.com/sharer/sharer.php?u="+window.location.host+"/"+e.target.id,"")
-                                });
-			});
 			$("document").ready(function () {
-				$(".q").mouseover(function () { $(".click").show(); $("#count").css('opacity','0.8'); })
-					.mouseout(function () { $(".click").hide(); $("#count").css('opacity','1');})
+				$(".click").css("z-index","-1")
+				$(".click").mouseover(function (e) {
+				 $(e.target).children(".click").show();
+				  $("#count").css('opacity','0.8'); 
+				})
+				.mouseout(function (e) {
+					$(e.target).children(".click").hide();
+					  $("#count").css('opacity','1');
+					})
 					.css('cursor', 'pointer');
 				});
 		</script>
@@ -178,7 +177,7 @@
                     	<div class="q" onclick="window.location='{{q.inum}}'">
 							<img class="uimg" src="https://graph.facebook.com/{{q.fid}}/picture?type=small">
 							<img class="qimg" src="/uploads/{{q.filename}}.png">
-							<div class="click" style="position: absolute;display:none;margin-left:14px; margin-top:14px"><img src="/static/img/q_img_click.png"></div>
+							<img class="click" style="position: absolute;margin-left:14px; margin-top:14px" src="/static/img/q_img_click.png">
 							<div class="qb" id="{{q.inum}}">
 								<b>{{q.title}}</b>
 								<div id="count"><span style="font-size:18;"><br>답변<br></span>{{q.count}}</div>

@@ -117,11 +117,19 @@
 		    }
 		</style>
 		<script type="text/javascript">
-			$("document").ready(function () {
-				$(".q").mouseover(function () { $(".click").show(); $("#count").css('opacity','0.8'); })
-					.mouseout(function () { $(".click").hide(); $("#count").css('opacity','1');})
+		$("document").ready(function () {
+				$(".click").css("z-index","-1")
+				$(".click").mouseover(function (e) {
+				 $(e.target).children(".click").show();
+				  $("#count").css('opacity','0.8'); 
+				})
+				.mouseout(function (e) {
+					$(e.target).children(".click").hide();
+					  $("#count").css('opacity','1');
+					})
 					.css('cursor', 'pointer');
 				});
+
 
 		</script>
 	</head>
@@ -130,7 +138,8 @@
 			{%for ques in list%}
 				<div class="q" onclick="window.location='{{ques.inum}}'">
 					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
-					<div class="click" style="position: absolute;display:none;margin-left:13px; margin-top:14px"><img src="/static/img/q_img_click.png"></div>
+					<!--<div class="click" style="position: absolute;margin-left:13px; margin-top:14px"><img src="/static/img/q_img_click.png"></div>-->
+					<img src="/static/img/q_img_click.png" class="click" style="position: absolute;margin-left:13px; margin-top:14px">
 					<div ><img class="qimg" src="/uploads/{{ques.filename}}.png"></div>
 					<div class="qb">
 						<b>{{ques.title}}</b>

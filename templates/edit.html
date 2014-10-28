@@ -137,6 +137,7 @@
 				if($('#title').val().length>20)
 				{
 					alert("Too long title: max title length is 20");
+					$('#title').val($('#title').val().substr(0,20))
 					return false;
 				}
 				title = $('#title').val();
