@@ -14,9 +14,9 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 SECRET_KEY = 'development key'
 DEBUG = True
-FACEBOOK_APP_ID = '1666886116870681'
-FACEBOOK_APP_SECRET = '2750cfbf8755054c516fc327aaa00044'
-UPLOAD_FOLDER = '/home/bjh970913/dc/math/mathician/uploads/'
+FACEBOOK_APP_ID = '700549056695412'
+FACEBOOK_APP_SECRET = '54a670ce9f9b7b5f69152b6e1dc665b1'
+UPLOAD_FOLDER = '/Users/smswnd/mathician/uploads/'
 
 app = Flask(__name__, static_folder="", static_url_path="")
 app.debug = DEBUG
@@ -180,9 +180,9 @@ def my_profile():
     if isloggedin():
         #ques = db_session.execute(text('select ques.no, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques')).fetchall()
         #'a'+1
-        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+session.get('fid'))).fetchall()
+        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.qno = ques.no) as count from ques where ques.fid='+session.get('fid'))).fetchall()
         ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=session.get('fid')).all()
-        return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
+        return render_template('profile.html', ques=ques, ans=ans,  ismine=1);
         'a'+1
     else:
         return redirect('/')
@@ -192,9 +192,9 @@ def show_profile(fid):
     if isloggedin():
         #ques = db_session.execute(text('select ques.no, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques')).fetchall()
         #'a'+1
-        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+fid)).fetchall()
+        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.qno = ques.no) as count from ques where ques.fid='+fid)).fetchall()
         ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=fid).all()
-        return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
+        return render_template('profile.html', ques=ques, ans=ans,  ismine=1);
         'a'+1
     else:
         return redirect('/')

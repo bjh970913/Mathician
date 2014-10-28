@@ -16,6 +16,7 @@ DEBUG = True
 FACEBOOK_APP_ID = '700549056695412'
 FACEBOOK_APP_SECRET = '54a670ce9f9b7b5f69152b6e1dc665b1'
 UPLOAD_FOLDER = '/Users/smswnd/mathician/uploads/'
+
 app = Flask(__name__, static_folder="", static_url_path="")
 app.debug = DEBUG
 app.secret_key = SECRET_KEY

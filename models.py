@@ -37,7 +37,7 @@ class Ans(Base):
         no = Column(Integer, primary_key=True, autoincrement=True)
         fid = Column(String(20))
         qno = Column(Integer)
-        inum = Column(Integer)
+        inum = Column(String(15))
         title = Column(String(40))
         filename = Column(String(200))
 
