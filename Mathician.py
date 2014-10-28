@@ -4,15 +4,19 @@ from flask_oauth import OAuth
 from database import *
 from models import *
 from base64 import *
+from sqlalchemy.sql import text
 import os
 import random
 import uuid
+import sys
 
+reload(sys)
+sys.setdefaultencoding('utf8')
 SECRET_KEY = 'development key'
 DEBUG = True
-FACEBOOK_APP_ID = '1666886116870681'
-FACEBOOK_APP_SECRET = '2750cfbf8755054c516fc327aaa00044'
-UPLOAD_FOLDER = '/home/bjh970913/dc/mathician/uploads/'
+FACEBOOK_APP_ID = '700549056695412'
+FACEBOOK_APP_SECRET = '54a670ce9f9b7b5f69152b6e1dc665b1'
+UPLOAD_FOLDER = '/Users/smswnd/mathician/uploads/'
 
 app = Flask(__name__, static_folder="", static_url_path="")
 app.debug = DEBUG
@@ -47,7 +51,7 @@ def view_n(inum):
     if isloggedin():
         ques = db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.no, Ques.inum).filter_by(inum=inum).all()
         alist = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(qno=ques[0].no).all()
-        return render_template('view.html', ques = ques, alist = alist, ismine=(session['fid']==ques[0].fid));    
+        return render_template('view.html', ques = ques, alist = alist, ismine=(session['fid']==ques[0].fid));
     else:
         return redirect('/')
 
@@ -89,7 +93,7 @@ def logout():
 @app.route('/main')
 def main():
     if isloggedin():
-        list=db_session.query(Ques.title, Ques.filename, Ques.fid, Ques.inum).all()
+	list = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.qno = ques.no) as cnt from ques')).fetchall()
         return render_template('main.html', list = list);
     else:
         return redirect('/')
@@ -146,7 +150,7 @@ def qsave():
             qqq = Ques(fid=session['fid'], inum=num, title=title, filename=filename)
             db_session.add(qqq)
             db_session.commit()
-            return redirect('/uploads/'+filename+'.png')
+            return  "<script>window.close()</script>";
     else:
         return redirect('/')
 
@@ -167,7 +171,31 @@ def asave():
             qqq = Ans(fid=session['fid'], qno=ques[0].no, inum=num, title=title, filename=filename)
             db_session.add(qqq)
             db_session.commit()
-            return redirect('/uploads/'+filename+'.png')
+            return "<script>window.close()</script>"
+    else:
+        return redirect('/')
+
+@app.route('/profile')
+def my_profile():
+    if isloggedin():
+        #ques = db_session.execute(text('select ques.no, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques')).fetchall()
+        #'a'+1
+        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+session.get('fid'))).fetchall()
+        ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=session.get('fid')).all()
+        return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
+        'a'+1
+    else:
+        return redirect('/')
+
+@app.route('/profile/<fid>')
+def show_profile(fid):
+    if isloggedin():
+        #ques = db_session.execute(text('select ques.no, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques')).fetchall()
+        #'a'+1
+        ques = db_session.execute(text('select ques.title, ques.filename, ques.inum, ques.fid, (select count(*) from ans where ans.fid = ques.fid) as count from ques where ques.fid='+fid)).fetchall()
+        ans = db_session.query(Ans.title, Ans.filename, Ans.fid, Ans.no, Ans.qno).filter_by(fid=fid).all()
+        return render_template('profile.html', ques=ques, ans=ans,  ismine=(session['fid']==ques[0].fid));
+        'a'+1
     else:
         return redirect('/')
 

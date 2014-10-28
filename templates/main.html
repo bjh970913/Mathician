@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -77,6 +78,12 @@
 					.mouseout(function () { $(".click").hide(); })
 					.css('cursor', 'pointer');
 				});
+			$(document).ready(function(){
+				$('.uimg').click(function(e){
+					window.location='/profile/'+e.target.id;
+					e.stopPropagation();
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -91,6 +98,7 @@
 					<div ><img class="qimg" src="/uploads/{{ques.filename}}.png"></div>
 					<div class="qb">
 						<b>{{ques.title}}</b>
+						{{ques.cnt}}
 					</div>
 				</div>
 			{%endfor%}
