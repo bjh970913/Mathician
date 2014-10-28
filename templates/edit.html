@@ -133,6 +133,11 @@
 					alert("Plese enter title");
 					return false;
 				}
+				if($('#title').val().length>20){
+					alert("Title is too long(MAX length is 20)");
+					$('#title').val() = $('#title').val().substr(0,20)
+                                        return false;
+				}
 				title = $('#title').val();
 				img=$("#c")[0].toDataURL("image/png");
 				//$("#menu2").append("<img src='"+img+"''>")
@@ -145,7 +150,7 @@
 				$('#edittext').val('')
 			}
 
-			/*
+			
 			var edit = {isedit:false}
 
 			fabric.IText.prototype.enterEditing=function(){
@@ -156,7 +161,6 @@
 				text();
 				return this
 			}
-			*/
 
 		</script>
 		<style type="text/css">
