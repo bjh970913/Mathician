@@ -170,7 +170,7 @@
 	</head>
 	<body>
 		<div id="container">
-			<b>질문목록</b>
+			<b>질문목록</b><br>
 
 			{%if ques|length > 0%}
                 {%for q in ques%}
@@ -184,9 +184,11 @@
 							</div>
 						</div>
 				{%endfor%}
+			{%else%}
+				<b>질문이 없습니다.</b><br><br>
             {%endif%}
 
-			<b>답변목록</b>
+			<b>답변목록</b><br>
 
 			{%if ans|length > 0%}
 				{%for a in ans%}
@@ -199,9 +201,7 @@
 					</div>
 				{%endfor%}
 			{%else%}
-				<div>
-					No answer;;
-				</div>
+				<b>답변이 없습니다.</b><br>
 			{%endif%}
 		</div>
 		<div class="back">

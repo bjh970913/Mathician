@@ -134,6 +134,11 @@
 					alert("Plese enter title");
 					return false;
 				}
+				if($('#title').val().length>20)
+				{
+					alert("Too long title: max title length is 20");
+					return false;
+				}
 				title = $('#title').val();
 				img=$("#c")[0].toDataURL("image/png");
 				//$("#menu2").append("<img src='"+img+"''>")
