@@ -90,6 +90,10 @@
 				text-decoration: none;
 				color: black;
 			}
+			#container>b{
+				font-size:30px;
+				color: white;
+			}
 		</style>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -104,32 +108,21 @@
 	</head>
 	<body>
 		<div id="container">
-			<div id="buttons">
-				<div>
-					<a href="/edit?mode=a&amp;qnum={{ques[0].inum}}" onclick="window.open(this.href,'_blank','width=1232,height=708, scrollbars=yes');return false;">답변하기</a>
-				</div>
-				{%if ismine%}
-				<div>
-					<a href="/delete?qnum={{ques[0].inum}}">삭제하기</a>
-				</div>
-				{%endif%}
-			</div>
-
-			질문목록
+			<b>질문목록</b>
 
 			{%if ques|length > 0%}
                 {%for q in ques%}
-                    	<div class="q">
-							<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
-							<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
-							<div class="qb" id="{{ques[0].inum}}">
+                    	<div class="q" onclick="window.location='{{q.inum}}'">
+							<img class="uimg" src="https://graph.facebook.com/{{q.fid}}/picture?type=small">
+							<img class="qimg" src="/uploads/{{q.filename}}.png">
+							<div class="qb" id="{{q.inum}}">
 								<b>{{q.title}}</b>
 							</div>
 						</div>
 				{%endfor%}
             {%endif%}
 			
-			답변목록
+			<b>답변목록</b>
 			
 			{%if ans|length > 0%}
 				{%for a in ans%}
