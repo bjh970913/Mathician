@@ -41,8 +41,8 @@ body{
     color: black;
     width: 220px;
     height: -webkit-calc(100% - 52px);
-    background-color: #ffffff;
-    box-shadow: #dddddd 2px 0px;
+    background-color: #37698c;
+
     position: absolute;
     top: 52px;
     left: 65px;
@@ -69,15 +69,33 @@ body{
     outline-style: none;
 }
 #save{
-    width: 117px;
-    height: 32px;
+    width: 123px;
+    height: 39px;
     margin-top: 13px;
     margin-right: 35px;
     float: right;
     cursor:pointer;
     background-image: url(/static/img/ed_button_sub_pr.png);
 }
-#save:hover{background-image: url(/static/img/ed_button_sub.png);}
+#save:hover{background-image: url(/static/img/ed_button_sub2.png);}
+#delete-item img:hover{
+    background-image: url(/static/img/ed_icon_select_del_pr.png);
+}
+#btnClear img:hover{
+    background-image: url(/static/img/ed_icon_all_del_pr.png);
+}
+#freedraw{
+    margin:20px; border-radius: 10px;
+}
+#freedraw #on{
+    content: url(/static/img/ed_icon_draw.png);
+}
+#freedraw #off{
+    content: url(/static/img/ed_icon_draw_off.png);
+}
+#new_text{
+    list-style: none;
+}
 #edit{
     background-color: #ffffff;
     width: -webkit-calc(100% - 415px);
@@ -114,4 +132,22 @@ body{
 }
 #context{
     margin-top: 300px;
+}
+#btnAddCircle{margin:20px; border-radius: 10px;}
+#btnAdd3{margin:20px; border-radius: 10px;}
+#btnAdd4{margin:20px; border-radius: 10px;}
+#btnAdd5{margin:20px; border-radius: 10px;}
+#btnAdd6{margin:20px; border-radius: 10px;}
+#btnAddGraph{margin:20px; border-radius: 10px;}
+#btnAddLine{margin:20px; border-radius: 10px;}
+#btnAddCurve{margin:20px; border-radius: 10px;}
+#btnAddtext{display: inline-block; margin:20px; border-radius: 10px;}
+textarea{
+    background-color: transparent;
+    border:4px solid #4a4a4a;
+    border-radius: 3px;
+    resize:none;
+    margin-left:7px;
+    color:white;
+    height: 500;
 }

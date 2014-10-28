@@ -19,14 +19,6 @@ $(document).ready(function(){
         $("#textbox").val('')
     });
 });
-function close_m2(){
-    edit['isedit'] = false;
-    $("#menu2 div").slideUp();
-    $("#menu2").animate({
-        width: "220px"
-    }, 1500 );
-    $("#close").hide();
-}
 function chmode(){
     if($('#textbox').css('z-index') =="10"){
         $('#chmod').text("M -> T");
@@ -58,6 +50,14 @@ function insert_formula(){
     });
     close_m2();
 }
+function graph(){
+    $("#menu2 div").slideUp();
+    $("#menu2").animate({
+        width: "220px"
+    }, 1500 );
+    $("#graph").slideDown();
+    $("#close").show();
+}
 function shape(){
     $("#menu2 div").slideUp();
     $("#menu2").animate({
@@ -75,17 +75,22 @@ function draw(){
     $("#close").show();
 }
 function text(){
-    $("#menu2 div").slideUp();
-    $("#menu2").animate({
-        width: "220px"
-    }, 1500 );
+    if(!edit['isedit']){
+
+        $("#menu2 div").slideUp();
+        $("#menu2").animate({
+            width: "220px"
+        }, 1500 );
+        $('#menu2').css('z-index',11);
+        $("#addtext").slideDown();
+    }
     $('#menu2').css('z-index',11);
-    $("#addtext").slideDown();
+    $("#addtext").show();
     $("#close").show();
 }
 function add_text(){
     size=$('#fontsize').val()
-    if($('#edittext').val().length==0)
+    if($('#edittext').val().length==0 && !edit['isedit'])
     {
         alert("Plese enter text");
         return false;
@@ -101,8 +106,6 @@ function add_text(){
         ob.text = $('#edittext').val();
         ob.fontSize = size;
         canvas.renderAll();
-        edit['isedit'] = false;
-        close_m2();
     }
     else
     {
@@ -113,6 +116,7 @@ function add_text(){
         fontSize: Number(size),
         });
         canvas.add(text);
+        new_text();
         close_m2();
     }
 }
@@ -120,6 +124,12 @@ function save(){
     if($('#title').val()=="")
     {
         alert("Plese enter title");
+        return false;
+    }
+    if($('#title').val().length>20)
+    {
+        alert("Too long title: max title length is 20");
+        $('#title').val($('#title').val().substr(0,20))
         return false;
     }
     title = $('#title').val();
@@ -131,18 +141,41 @@ function save(){
 function new_text()
 {
     $('#edittext').val('')
-    $('#edittext').val('')
+    if($('#fontsize').val()==''){
+        $('#fontsize').val('20')
+    }
+    edit['isedit']=false
 }
 
-/*
-var edit = {isedit:false}
+var edit = {isedit:false, object: new Object()}
 
 fabric.IText.prototype.enterEditing=function(){
+    this.exitEditingOnOthers();
     this.canvas && this.canvas.renderAll();
     $('#edittext').val(this.text)
     edit['isedit'] = true;
     edit['object'] = this;
     text();
-    return this
+    return this;
 }
-*/
+
+function text_save(){
+    if(edit['isedit'])
+    {
+        add_text();
+    }
+}
+$(document).ready(function(){
+    $('#edittext').change(function(){
+        text_save()
+    });
+    $('#edittext').keydown(function(){
+        text_save()
+    });
+    $('#edittext').change(function(){
+        text_save()
+    });
+    $('#fontsize').keydown(function(){
+        text_save()
+    });
+});
