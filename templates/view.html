@@ -21,11 +21,9 @@
 				margin-bottom: 8px;
 			}
 			.qb{
-				border-top-left-radius: 10px;
-				border-top-right-radius: 10px;
 				height: 100px;
-				width: 827px;
-				margin: 15px;
+				width: 817px;
+				margin: 20px;
 				font-size: 49px;
 				background-color: white;
 				padding-left: 60px;
@@ -65,9 +63,9 @@
 				font-size: 10px;
 			}
 			.ans{
-				width: 130px;
-				height: 50px;
-				background-image: url(/static/img/q_button_answer_pr.png);
+				width: 139px;
+				height: 58px;
+				background-image: url(/static/img/q_button_solve_pr.png);
 				text-align: center;
 				font-size: 45px;
 				position: relative;
@@ -76,7 +74,7 @@
 				cursor:pointer;
 			}
 			.ans:hover{
-				background-image: url(/static/img/q_button_answer.png);
+				background-image: url(/static/img/q_button_solve.png);
 			}
 			.back {
 		      position: absolute;
@@ -151,9 +149,6 @@
 				<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
 				<div class="qb" id="{{ques[0].inum}}">
 					<b>{{ques[0].title}}</b>
-					<a class="fb_share" id="{{ques[0].inum}}">
-	                           	     공유
-	                   	        </a>
 				</div>
 			</div>
 			{%if alist|length > 0%}

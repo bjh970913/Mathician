@@ -11,6 +11,7 @@
 				width: 916px;
 				padding: 0;
 				margin: 0 auto;
+				margin-top:100px;
 
 			}
 			.q{
@@ -21,6 +22,7 @@
 				margin-top: 8px;
 				margin-bottom: 8px;
 			}
+			.q:hover {opacity: 0.8;}
 			.a{
 				width: 917px;
 				height: 594px;
@@ -30,11 +32,9 @@
 				margin-bottom: 8px;
 			}
 			.qb{
-				border-top-left-radius: 10px;
-				border-top-right-radius: 10px;
 				height: 100px;
-				width: 827px;
-				margin: 15px;
+				width: 817px;
+				margin: 20px;
 				font-size: 49px;
 				background-color: white;
 				padding-left: 60px;
@@ -94,6 +94,63 @@
 				font-size:30px;
 				color: white;
 			}
+			#count{
+		    	width:62;
+		    	height: 107;
+		    	background-image: url(/static/img/q_img_count.png);
+				margin-top: -10;
+				float: right;
+		    	margin-right: 20;
+		    	color: white;
+		    	text-align: center;
+		    	font-size: 45;
+		    	z-index: 100;
+		    }
+		    .back {
+		      position: absolute;
+		      top: 0;
+		      left: 0;
+		      text-align: right;
+		      display: block;
+		      padding: -14px;
+		      width: 100%;
+		      font-weight: bold;
+		      font-size: 20px;
+		      color: #fff;
+		    }
+		    #upload_prob:hover{background-image: url(/static/img/nav_button_pr.png);}
+		    #my_page:hover{background-image: url(/static/img/nav_button_pr.png);}
+		    #solve_prob:hover{background-image: url(/static/img/nav_button_pr.png);}
+		    #upload_prob{
+		    	position:absolute;
+		    	top:12;
+		    	right:350;
+		    	cursor:pointer;
+		    	width:118;
+		    	height:37;
+		    	line-height:2;
+		    	text-align:center;
+		    }
+		    #my_page{
+		    	position:absolute;
+		    	top:12;
+		    	right:50;
+		    	cursor:pointer;
+		    	width:118;
+		    	height:37;
+		    	line-height:2;
+		    	text-align:center;
+		    }
+		    #solve_prob{
+		    	position:absolute;
+		    	top:12;
+		    	right:200;
+		    	cursor:pointer;
+		    	width:118;
+		    	height:37;
+		    	line-height:2;
+		    	text-align:center;
+		    }
 		</style>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -104,6 +161,11 @@
                                         window.open("http://www.facebook.com/sharer/sharer.php?u="+window.location.host+"/"+e.target.id,"")
                                 });
 			});
+			$("document").ready(function () {
+				$(".q").mouseover(function () { $(".click").show(); $("#count").css('opacity','0.8'); })
+					.mouseout(function () { $(".click").hide(); $("#count").css('opacity','1');})
+					.css('cursor', 'pointer');
+				});
 		</script>
 	</head>
 	<body>
@@ -115,15 +177,17 @@
                     	<div class="q" onclick="window.location='{{q.inum}}'">
 							<img class="uimg" src="https://graph.facebook.com/{{q.fid}}/picture?type=small">
 							<img class="qimg" src="/uploads/{{q.filename}}.png">
+							<div class="click" style="position: absolute;display:none;margin-left:14px; margin-top:14px"><img src="/static/img/q_img_click.png"></div>
 							<div class="qb" id="{{q.inum}}">
 								<b>{{q.title}}</b>
+								<div id="count"><span style="font-size:20;">답변</span>{{q.count}}</div>
 							</div>
 						</div>
 				{%endfor%}
             {%endif%}
-			
+
 			<b>답변목록</b>
-			
+
 			{%if ans|length > 0%}
 				{%for a in ans%}
 					<div class="a">
@@ -140,5 +204,11 @@
 				</div>
 			{%endif%}
 		</div>
+		<div class="back">
+      		<img src="/static/img/nav_logo.png" style="float:left;margin-left:15px;margin-top:20px;">
+      		<div id="upload_prob" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">문제올리기</div>
+      		<div id="solve_prob" onclick="window.open('/main','_self','width=1232,height=708, scrollbars=yes');return false;">문제풀기</div>
+      		<div id="my_page" onclick="window.open('/profile','_self','width=1232,height=708, scrollbars=yes');return false;">마이페이지</div>
+ 		</div>
 	</body>
 </html>

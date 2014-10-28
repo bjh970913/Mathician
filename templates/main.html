@@ -23,13 +23,11 @@
 				margin-bottom: 8px;
 				z-index:100;
 			}
-			.q:hover{opacity: 0.8;}
+			.q:hover {opacity: 0.8;}
 			.qb{
-				border-top-left-radius: 10px;
-				border-top-right-radius: 10px;
 				height: 100px;
-				width: 827px;
-				margin: 15px;
+				width: 817px;
+				margin: 20px;
 				font-size: 49px;
 				background-color: white;
 				padding-left: 60px;
@@ -104,19 +102,26 @@
 		    	line-height:2;
 		    	text-align:center;
 		    }
+		    #count{
+		    	width:62;
+		    	height: 107;
+		    	background-image: url(/static/img/q_img_count.png);
+				margin-top: -10;
+				float: right;
+		    	margin-right: 20;
+		    	color: white;
+		    	text-align: center;
+		    	font-size: 45;
+		    	z-index: 100;
+		    }
 		</style>
 		<script type="text/javascript">
 			$("document").ready(function () {
-				$(".q").mouseover(function () { $(".click").show(); })
-					.mouseout(function () { $(".click").hide(); })
+				$(".q").mouseover(function () { $(".click").show(); $("#count").css('opacity','0.8'); })
+					.mouseout(function () { $(".click").hide(); $("#count").css('opacity','1');})
 					.css('cursor', 'pointer');
 				});
-			$(document).ready(function(){
-				$('#my_page').click(function(e){
-					window.location='/profile/'+e.target.id;
-					e.stopPropagation();
-				});
-			});
+
 		</script>
 	</head>
 	<body>
@@ -124,11 +129,11 @@
 			{%for ques in list%}
 				<div class="q" onclick="window.location='{{ques.inum}}'">
 					<img class="uimg" src="https://graph.facebook.com/{{ques.fid}}/picture?type=small">
-					<div class="click" style="position: absolute;display:none;right:147; margin-top:15px"><img src="/static/img/q_img_click.png"></div>
+					<div class="click" style="position: absolute;display:none;margin-left:13px; margin-top:14px"><img src="/static/img/q_img_click.png"></div>
 					<div ><img class="qimg" src="/uploads/{{ques.filename}}.png"></div>
 					<div class="qb">
 						<b>{{ques.title}}</b>
-						{{ques.cnt}}
+						<div id="count"><span style="font-size:20;">답변</span>{{ques.cnt}}</div>
 					</div>
 				</div>
 			{%endfor%}
