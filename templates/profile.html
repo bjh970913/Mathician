@@ -58,8 +58,9 @@
 			.qimg{
 				position: absolute;
 				padding-top:130px;
-				width: 917px;
-				height: 594px;
+				margin-left:22px;
+				width: 757px;
+				height: 444px;
 			}
 			#mq{
 				width: 917px;
@@ -103,7 +104,7 @@
 		    	margin-right: 20;
 		    	color: white;
 		    	text-align: center;
-		    	font-size: 45;
+		    	font-size: 30;
 		    	z-index: 100;
 		    }
 		    .back {
@@ -180,7 +181,7 @@
 							<div class="click" style="position: absolute;display:none;margin-left:14px; margin-top:14px"><img src="/static/img/q_img_click.png"></div>
 							<div class="qb" id="{{q.inum}}">
 								<b>{{q.title}}</b>
-								<div id="count"><span style="font-size:20;">답변</span>{{q.count}}</div>
+								<div id="count"><span style="font-size:18;"><br>답변<br></span>{{q.count}}</div>
 							</div>
 						</div>
 				{%endfor%}
