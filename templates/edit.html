@@ -88,6 +88,7 @@
 			}
 			function text(){
 				if(!edit['isedit']){
+
 					$("#menu2 div").slideUp();
 					$("#menu2").animate({
 						width: "220px"
@@ -95,6 +96,8 @@
 					$('#menu2').css('z-index',11);
 					$("#addtext").slideDown();
 				}
+				$('#menu2').css('z-index',11);
+				$("#addtext").show();
 				$("#close").show();
 			}
 			function add_text(){
@@ -151,6 +154,7 @@
 			{
 				$('#edittext').val('')
 				$('#edittext').val('')
+				edit['isedit']=false
 			}
 
 			var edit = {isedit:false, object: new Object()}
@@ -345,7 +349,7 @@
 				<li onclick="graph()">그래프</li>
 				<li onclick="shape()">도형</li>
 				<li onclick="draw()">그리기</li>
-				<li onclick="text()" id="text">텍스트</li>
+				<li onclick="new_text();text()" id="text">텍스트</li>
 				<li id="delete-item" style="margin-top:10px"><img src="/static/img/ed_icon_select_del.png"></li>
 				<li id="btnClear" style="margin-top:10px"><img src="/static/img/ed_icon_all_del.png"></li>
 			</ul>

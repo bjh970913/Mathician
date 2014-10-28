@@ -129,9 +129,10 @@ document.getElementById('freedraw').addEventListener('click', function () {
     canvas.isDrawingMode = !canvas.isDrawingMode;
     canvas.freeDrawingBrush.width = 5;
 });
+/*
 document.getElementById('colorpicker').addEventListener('change', function (e) {
     console.log(e.target.value);
     canvas.freeDrawingBrush.color = e.target.value;
-});
+});*/
 
 });
