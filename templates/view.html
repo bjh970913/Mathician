@@ -11,46 +11,84 @@
 				width: 916px;
 				padding: 0;
 				margin: 0 auto;
+
 			}
 			.q{
-			width: 917px;
-			height: 594px;
-			border: 1px solid black;
-			background-image: url(/static/img/q_img_problem.png);
-			margin-top: 8px; 
-			margin-bottom: 8px; 
-			}
-			.qb{
-			height: 100px;
-			width: 827px;
-			margin: 15px;
-			font-size: 49px;
-			background-color: gray;
-			padding-left: 60px;
-			opacity: 0.4;
+				width: 917px;
+				height: 594px;
+				border: 1px solid black;
+				background-image: url(/static/img/q_img_problem.png);
+				margin-top: 8px;
+				margin-bottom: 8px;
 			}
 			.a{
-			width: 917px;
-			height: 594px;
-			border: 1px solid black;
-			background-image: url(/static/img/q_img_problem.png);
-			margin-top: 8px; 
-			margin-bottom: 8px; 
+				width: 917px;
+				height: 594px;
+				border: 1px solid black;
+				background-image: url(/static/img/q_img_problem.png);
+				margin-top: 8px;
+				margin-bottom: 8px;
+			}
+			.qb{
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				height: 100px;
+				width: 827px;
+				margin: 15px;
+				font-size: 49px;
+				background-color: white;
+				padding-left: 60px;
+				border-bottom: 2px solid #d2d2d2;
+			}
+			.qb b{
+				line-height: 100px;
+				font-size: 30pt;
+				padding-top: 40px;
+				margin-top: 60px;
+				margin-left: 40px;
 			}
 			.uimg{
-			position: absolute;
-			width: 65px;
-			height: 65px;
-			margin-top: 30px;
-			margin-left: 30px;
+				position: absolute;
+				width: 65px;
+				height: 65px;
+				margin-top: 30px;
+				margin-left: 30px;
+				z-index: 40;
 			}
 			.qimg{
-			position: absolute;
-			width: 917px;
-			height: 594px;
+				position: absolute;
+				padding-top:130px;
+				width: 917px;
+				height: 594px;
+			}
+			#mq{
+				width: 917px;
+				height: 110px;
+				background-image: url(/static/img/q_button_ask_pr.png);
+				text-align: center;
+				font-size: 45px;
+				cursor:pointer;
+			}
+			#mq:hover{
+				background-image: url(/static/img/q_button_ask.png);
+			}
+			.ans{
+				width: 130px;
+				height: 50px;
+				background-image: url(/static/img/q_button_answer_pr.png);
+				text-align: center;
+				font-size: 45px;
+				position: relative;
+				left: 740px;
+				top: 370px;
+				cursor:pointer;
+			}
+			.ans:hover{
+				background-image: url(/static/img/q_button_answer.png);
 			}
 			a{
-			font-size: 10px;
+				text-decoration: none;
+				color: black;
 			}
 		</style>
 		<script type="text/javascript">
@@ -80,10 +118,7 @@
 				<img class="uimg" src="https://graph.facebook.com/{{ques[0].fid}}/picture?type=small">
 				<img class="qimg" src="/uploads/{{ques[0].filename}}.png">
 				<div class="qb" id="{{ques[0].inum}}">
-					{{ques[0].title}}
-					<a class="fb_share" id="{{ques[0].inum}}">
-	                           	     공유
-	                   	        </a>
+					<b>{{ques[0].title}}</b>
 				</div>
 			</div>
 			{%if alist|length > 0%}
@@ -92,7 +127,7 @@
 						<img class="uimg" src="https://graph.facebook.com/{{ans.fid}}/picture?type=small">
 						<img class="qimg" src="/uploads/{{ans.filename}}.png">
 						<div class="qb" id="{{ans.no}}">
-							{{ans.title}}
+							<b>{{ans.title}}</b>
 						</div>
 					</div>
 				{%endfor%}
