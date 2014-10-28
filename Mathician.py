@@ -14,9 +14,9 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 SECRET_KEY = 'development key'
 DEBUG = True
-FACEBOOK_APP_ID = '700549056695412'
-FACEBOOK_APP_SECRET = '54a670ce9f9b7b5f69152b6e1dc665b1'
-UPLOAD_FOLDER = '/Users/smswnd/mathician/uploads/'
+FACEBOOK_APP_ID = '1666886116870681'
+FACEBOOK_APP_SECRET = '2750cfbf8755054c516fc327aaa00044'
+UPLOAD_FOLDER = '/home/bjh970913/dc/math/mathician/uploads/'
 
 app = Flask(__name__, static_folder="", static_url_path="")
 app.debug = DEBUG
@@ -44,7 +44,7 @@ def randomurl(leng):
 
 @app.route('/')
 def index():
-    return render_template('index.html');
+    return render_template('index.html', login= isloggedin());
 
 @app.route('/<inum>')
 def view_n(inum):
@@ -80,7 +80,7 @@ def facebook_authorized(resp):
         user = User(fid=id, name=me.data['name'])
         db_session.add(user)
         db_session.commit()
-    return redirect(url_for('main'))
+    return redirect('/')
 
 @app.route('/logout')
 def logout():
