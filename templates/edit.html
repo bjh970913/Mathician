@@ -153,7 +153,9 @@
 			function new_text()
 			{
 				$('#edittext').val('')
-				$('#edittext').val('')
+				if($('#fontsize').val()==''){
+					$('#fontsize').val('40')
+				}				
 				edit['isedit']=false
 			}
 

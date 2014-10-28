@@ -127,6 +127,7 @@ if(canvas.getActiveGroup()){
 
 document.getElementById('freedraw').addEventListener('click', function () {
     canvas.isDrawingMode = !canvas.isDrawingMode;
+    $("#freedraw img").attr("id",(canvas.isDrawingMode?"on":"off"))
     canvas.freeDrawingBrush.width = 5;
 });
 /*
