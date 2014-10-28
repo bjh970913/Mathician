@@ -193,6 +193,19 @@
     .back {
       position: absolute;
       top: 0;
+      margin-top:10px;
+      left: 0;
+      text-align: right;
+      display: block;
+      padding: -14px;
+      width: 100%;
+      font-weight: bold;
+      font-size: 20px;
+      color: #fff;
+    }
+    .nav {
+      position: absolute;
+      top: 0;
       left: 0;
       text-align: right;
       display: block;
@@ -345,6 +358,39 @@
       margin-right: auto;
       right: 0;
     }
+    #upload_prob:hover{background-image: url(/static/img/nav_button_pr.png);}
+        #my_page:hover{background-image: url(/static/img/nav_button_pr.png);}
+        #solve_prob:hover{background-image: url(/static/img/nav_button_pr.png);}
+        #upload_prob{
+          position:absolute;
+          top:12;
+          right:350;
+          cursor:pointer;
+          width:118;
+          height:37;
+          line-height:2;
+          text-align:center;
+        }
+        #my_page{
+          position:absolute;
+          top:12;
+          right:50;
+          cursor:pointer;
+          width:118;
+          height:37;
+          line-height:2;
+          text-align:center;
+        }
+        #solve_prob{
+          position:absolute;
+          top:12;
+          right:200;
+          cursor:pointer;
+          width:118;
+          height:37;
+          line-height:2;
+          text-align:center;
+        }
         </style>
         <script>
           $(document).ready(function(){
@@ -373,9 +419,18 @@
       </section>
     </div>
     <div class="back">
+      <img src="/static/img/nav_logo.png" style="float:left;margin-left:15px;margin-top:20px;">
       <a class="btn-block btn-social btn-facebook" href="/login" _target="blank">
       <img src="static/img/main_button_signup.png">
     </a>
   </div>
+  <!--
+  <div class="nav">
+          <img src="/static/img/nav_logo.png" style="float:left;margin-left:15px;margin-top:20px;">
+          <div id="upload_prob" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">문제올리기</div>
+          <div id="solve_prob" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">문제풀기</div>
+          <div id="my_page" onclick="window.open('/edit?mode=q','_blank','width=1232,height=708, scrollbars=yes');return false;">마이페이지</div>
+    </div>
+  -->
 </body>
 </html>
