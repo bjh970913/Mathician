@@ -155,7 +155,7 @@
 				$('#edittext').val('')
 				if($('#fontsize').val()==''){
 					$('#fontsize').val('20')
-				}				
+				}
 				edit['isedit']=false
 			}
 
@@ -190,7 +190,7 @@
 				$('#fontsize').keydown(function(){
  					text_save()
  				});
- 			});	
+ 			});
 		</script>
 		<style type="text/css">
 			body{
@@ -272,7 +272,7 @@
 				cursor:pointer;
 				background-image: url(/static/img/ed_button_sub_pr.png);
 			}
-			#save:hover{background-image: url(/static/img/ed_button_sub.png);}
+			#save:hover{background-image: url(/static/img/ed_button_sub2.png);}
 			#delete-item img:hover{
 				background-image: url(/static/img/ed_icon_select_del_pr.png);
 			}
@@ -337,6 +337,15 @@
 			#btnAddLine{margin:20px; border-radius: 10px;}
 			#btnAddCurve{margin:20px; border-radius: 10px;}
 			#btnAddtext{display: inline-block; margin:20px; border-radius: 10px;}
+			textarea{
+				background-color: transparent;
+				border:4px solid #4a4a4a;
+				border-radius: 3px;
+				resize:none;
+				margin-left:7px;
+				color:white;
+				height: 500;
+			}
 
 		</style>
 	</head>
@@ -379,7 +388,7 @@
 				<button onclick="insert_formula()">insert formula</button>
 			</div>
 			<div id='addtext'>
-				<textarea id="edittext" cols=28></textarea><input type="hidden" id="fontsize">
+				<textarea id="edittext" cols=25></textarea><input type="hidden" id="fontsize">
 				<button id="btnAddtext" onclick="add_text()"><img src="/static/img/ed_icon_text.png" width="40" height="40"></button>
 			</div>
 		</div>
