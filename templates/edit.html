@@ -154,7 +154,7 @@
 			{
 				$('#edittext').val('')
 				if($('#fontsize').val()==''){
-					$('#fontsize').val('40')
+					$('#fontsize').val('20')
 				}				
 				edit['isedit']=false
 			}
@@ -380,7 +380,7 @@
 			</div>
 			<div id='addtext'>
 				<textarea id="edittext" cols=28></textarea>
-				font size&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<input type="text" id="fontsize">
+				font size&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<input type="hidden" id="fontsize">
 				<button id="btnAddtext" onclick="add_text()"><img src="/static/img/ed_icon_text.png" width="40" height="40"></button>
 			</div>
 		</div>
