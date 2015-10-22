@@ -14,8 +14,8 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 SECRET_KEY = 'development key'
 DEBUG = True
-FACEBOOK_APP_ID = '700549056695412'
-FACEBOOK_APP_SECRET = '54a670ce9f9b7b5f69152b6e1dc665b1'
+FACEBOOK_APP_ID = '1569951343226675'
+FACEBOOK_APP_SECRET = 'c1e62aa47e49634b2804d7663794e8d1'
 UPLOAD_FOLDER = '/Users/smswnd/mathician/uploads/'
 
 app = Flask(__name__, static_folder="", static_url_path="")
